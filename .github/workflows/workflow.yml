@@ -1,0 +1,48 @@
+name: Job 1
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+    
+  workflow_dispatch:
+  
+jobs:
+
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Getting files n dirs
+        run: tree .
+        
+      - name: Print content of log.txt file
+        run: cat log.txt
+        
+      - name: Hello
+        run: |
+          git_hash=$(git rev-parse --short "$GITHUB_SHA")" >> $GITHUB_HASH
+          echo Sha: $GITHUB_HASH
+  
+  job2:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Print the system date and time
+        run: date '+%Y-%m-%d %H:%M:%S'
+        
+      - name: Print env variables
+        env:
+          MONTH: 04
+          DAY__OF_THE_MONTH: 20
+          YEAR: 2022
+        run: echo "Day - ${{env.DAY__OF_THE_MONTH}}\nMonth - ${{env.MONTH}}\nYear - ${{env.YEAR}}"
+        
+      - name: Favorite day of week
+        env:
+          FAVORITE_DAY_OF_WEEK: ${{ secrets.FAVORITE_DAY_OF_WEEK }}
+        run: echo "My favorite day of week is ${{FAVORITE_DAY_OF_WEEK}}"
+      
