@@ -19,7 +19,7 @@ jobs:
         run: tree .
         
       - name: Print content of log.txt file
-        run: cat log.txt
+        run: cat Task1/log.txt
         
       - name: Hello
         run: |
