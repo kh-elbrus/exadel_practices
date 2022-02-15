@@ -23,8 +23,8 @@ jobs:
         
       - name: Hello
         run: |
-          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)" > $GITHUB_HASH
-          echo "Hello from $GITHUB_HASH commit"
+          COMMIT_HASH=$(git rev-parse --short HEAD)
+          echo "Hello from $COMMIT_HASH commit"
   
   job2:
     runs-on: ubuntu-latest
