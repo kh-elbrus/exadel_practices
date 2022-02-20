@@ -134,7 +134,7 @@ systemctl enable php7.4-fpm
 5. Configure Nginx to Process PHP Files. Changing settings in the `/etc/nginx/sites-available/default` file
 
 ```bash
-sudo vim /etc/nginx/sites-available/example
+sudo vim /etc/nginx/sites-available/default
 ```
 
 Adding new lines:
