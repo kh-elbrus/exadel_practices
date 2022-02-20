@@ -50,5 +50,5 @@ echo $os;
 
 ''' | sudo tee /var/www/html/index.php
 
-sudo service nginx reboot
+sudo service nginx restart
 sudo service nginx status
