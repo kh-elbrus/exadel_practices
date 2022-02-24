@@ -56,7 +56,7 @@ The result of step EXTRA 8, is or scripts (if you have one), or an explanation o
 
 #### Useful terraform commands
 
-- `terraform init` - 
-- `terraform plan` -
-- `terraform apply` - 
-- `terraform destroy` -  
+- `terraform init` - is used to initialize a working directory containing Terraform configuration files.
+- `terraform plan` - command creates an execution plan, which lets you preview the changes that Terraform plans to make to your infrastructure.
+- `terraform apply` - command executes the actions proposed in a Terraform plan.
+- `terraform destroy` -  command is a convenient way to destroy all remote objects managed by a particular Terraform configuration.
