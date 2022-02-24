@@ -80,6 +80,8 @@ The result of step EXTRA 8, is or scripts (if you have one), or an explanation o
 
 ![Extra result](./src/img5.png)
 
+---
+
 #### Useful terraform commands
 
 - `terraform init` - is used to initialize a working directory containing Terraform configuration files.
