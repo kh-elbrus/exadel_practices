@@ -1,5 +1,4 @@
 # Exadel DevOps Internship 🐱‍👤
-## Practice labs 
 
 https://exadel.com/
 
