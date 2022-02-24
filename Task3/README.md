@@ -35,9 +35,12 @@ Author: Elbrus
 
 - [Main terraform config](./main.tf)
 - [Variables types](./variables.tf)
-- [Values of variables](./terraform.tfstate)
-- [Terraform plan output]()
+- [Values of variables](./terraform.tfvars)
+- [Terraform plan output](./output_mandatory_terraform_plan.txt)
  
+![Web page](./src/img3.png)
+![From Centos](./src/img4.png)
+
 ---
 
 #### EXTRA
