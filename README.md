@@ -1,5 +1,5 @@
-# exadel_practices
-Internship labs
+# Exadel DevOps Internship 🐱‍👤
+## Practice labs 
 
 ---
 
