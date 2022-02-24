@@ -31,7 +31,7 @@ Author: Elbrus
 
 ![Scheme](./src/img2.jpg)
 
-#### Practice
+#### Mandatory practice
 
 - [Main terraform config](./main.tf)
 - AWS instances:
@@ -69,6 +69,16 @@ Author: Elbrus
 The result of steps.1-7. is a terraform files in your GitHub. +file with output terraform plan BEFORE creating infrastructure.
 The result of step EXTRA 8, is or scripts (if you have one), or an explanation of how this can be implemented.
 
+#### Extra practice 
+
+- AMI ID inserted with terraform variables [tf variables](./variables.tf)
+- Changed security group rules of centos machine to `allow` access to the internet (`egress` not `ingress`)
+- With `user_data` download and installing nginx
+- After `deleted` rule to accessing the internet
+- Connected by ssh to the ubuntu server, from ubuntu by ssh connected to the centos
+- Curling both machines:
+
+![Extra result](./src/img5.png)
 
 #### Useful terraform commands
 
