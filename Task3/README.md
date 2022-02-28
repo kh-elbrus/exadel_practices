@@ -35,24 +35,24 @@ Author: Elbrus
 
 - [Main terraform config](./main.tf)
 - AWS instances:
-  - [AWS Ubuntu](./aws_instance_ubuntu.tf)
-  - [AWS Centos](./aws_instance_centos.tf)
+  - [AWS Ubuntu](./aws_instance/aws_instance_ubuntu.tf)
+  - [AWS Centos](./aws_instance/aws_instance_centos.tf)
 - AWS Network:
   - EIP:
-    - [AWS EIP Ubuntu](./aws_eip_ubuntu.tf)
-    - [AWS EIP Centos](./aws_eip_centos.tf)
+    - [AWS EIP Ubuntu](./aws_eip/aws_eip_ubuntu.tf)
+    - [AWS EIP Centos](./aws_eip/aws_eip_centos.tf)
   - Network interface:
-    - [AWS Ubuntu NIC](./aws_instance_ubuntu.tf)
-    - [AWS Centos NIC](./aws_eip_centos.tf)
-  - [AWS Internet GW](./aws_internet_gw.tf)
-  - [AWS Route Table](./aws_route_table.tf)
-  - [AWS Route Table Association](./aws_route_table_association.tf)
+    - [AWS Ubuntu NIC](./network/aws_nic/aws_network_interface_ubuntu.tf)
+    - [AWS Centos NIC](./network/aws_nic/aws_network_interface_centos.tf)
+  - [AWS Internet GW](./network/aws_internet_gw.tf)
+  - [AWS Route Table](./network/aws_route_table.tf)
+  - [AWS Route Table Association](./network/aws_route_table_association.tf)
 - AWS Security Groups:
-  - [AWS Security Group for Ubuntu](./aws_security_group_ubuntu.tf)
-  - [AWS Security Group for Centos](./aws_security_group_centos.tf)
+  - [AWS Security Group for Ubuntu](./aws_security_group/aws_security_group_ubuntu.tf)
+  - [AWS Security Group for Centos](./aws_security_group/aws_security_group_centos.tf)
 - [Variables types](./variables.tf)
 - [Values of variables](./terraform.tfvars)
-- [Terraform mandatory plan output](./output_mandatory_terraform_plan.txt)
+- [Terraform mandatory plan output](./output/mandatory_task_output.txt)
  
 ![Web page](./src/img3.png)
 ![From Centos](./src/img4.png)

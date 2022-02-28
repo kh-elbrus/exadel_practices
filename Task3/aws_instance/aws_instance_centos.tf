@@ -8,7 +8,7 @@ resource "aws_instance" "centos" {
     network_interface_id = aws_network_interface.centos-nic.id
   }
 
-  user_data = data.cloudinit_config.centos_ngnx_server.rendered
+  # user_data = data.cloudinit_config.centos_ngnx_server.rendered
 
   tags = var.centos-tags
 }
