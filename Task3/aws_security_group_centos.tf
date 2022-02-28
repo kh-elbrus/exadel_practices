@@ -9,16 +9,6 @@ resource "aws_security_group" "allow_traffic_to_centos" {
 # Public access rules
 ###
 
-resource "aws_security_group_rule" "public_out_c" {
-  type              = "egress"
-  from_port         = 0
-  to_port           = 0
-  protocol          = "-1"
-  cidr_blocks       = ["0.0.0.0/0"]
-
-  security_group_id = aws_security_group.allow_traffic_to_centos.id
-}
-
 resource "aws_security_group_rule" "icmp_to_all_c" {
   type              = "ingress"
   from_port         = -1

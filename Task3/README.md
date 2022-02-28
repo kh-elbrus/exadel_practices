@@ -73,9 +73,27 @@ The result of step EXTRA 8, is or scripts (if you have one), or an explanation o
 
 - AMI ID inserted with terraform variables [tf variables](./variables.tf)
 - Changed security group rules of centos machine to `allow` access to the internet (`egress` not `ingress`)
-- With `user_data` download and installing nginx
-- After `deleted` rule to accessing the internet
-- Connected by ssh to the ubuntu server, from ubuntu by ssh connected to the centos
+- Knowing that ubuntu has access to internet, we can build ssh proxy. 
+- Connecting to ubuntu machine and install simle http(s) proxy tinyproxy
+- Tinyproxy should listening the 443 port
+- After configuring the http proxy, we should connect to the centos form ubuntu
+- Next, building ssh tunnel from centos 443 port to ubuntu 443 port
+  - `ssh -i ubuntu-ssh.pem -N -L 443:localhost:443 ubuntu@10.0.1.49`  
+- Now we should setup proxy environment variables on centos
+  - `export http_proxy=http://localhost:443`
+  - `export https_proxy=http://localhost:443`
+  - init proxy at `yum.conf` file
+    - `proxy=http://localhost:443`
+  - Let's update repos and install nginx with `yum`
+    - `sudo yum -y update`
+    - `sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm`
+    - `sudo yum install -y epel-release`
+    - `sudo yum update -y`
+    - `sudo yum install nginx -y`
+  - Adding needed info:
+    - `echo '<h1>Hello world from centos!</h1>' | sudo tee /usr/share/nginx/html/index.html`
+    - `sudo systemctl start nginx`
+    - `sudo systemctl enable nginx` 
 - Curling both machines:
 
 ![Extra result](./src/img5.png)
