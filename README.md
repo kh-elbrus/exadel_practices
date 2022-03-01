@@ -1,6 +1,8 @@
 # Exadel DevOps Internship 🤘
 
-[![Deploy](https://github.com/kh-elbrus/exadel_practices/actions/workflows/workflow.yml/badge.svg)](https://github.com/kh-elbrus/exadel_practices/actions/workflows/workflow.yml)
+[![Jobs](https://github.com/kh-elbrus/exadel_practices/actions/workflows/workflow.yml/badge.svg)](https://github.com/kh-elbrus/exadel_practices/actions/workflows/workflow.yml)
+
+[![Buid & Push](https://github.com/kh-elbrus/exadel_practices/actions/workflows/docker-image.yml/badge.svg)](https://github.com/kh-elbrus/exadel_practices/actions/workflows/docker-image.yml)
 
 https://exadel.com/
 
