@@ -16,4 +16,4 @@
 
 (The Deployment can be in the “Pending” status for 10-20 minutes. This is normal).
 
-
+👉 [Checkout github actions](https://github.com/kh-elbrus/exadel_practices/actions/workflows/docker-image.yml)
