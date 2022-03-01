@@ -10,7 +10,7 @@ on:
   
 jobs:
 
-  job1:
+  os-sh:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -26,7 +26,7 @@ jobs:
           COMMIT_HASH=$(git rev-parse --short HEAD)
           echo "Hello from $COMMIT_HASH commit"
   
-  job2:
+  os-env:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
