@@ -1,6 +1,11 @@
-click==8.0.3
-Flask==2.0.2
-itsdangerous==2.0.1
-Jinja2==3.0.2
-MarkupSafe==2.0.1
-Werkzeug==2.0.2
+import os
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def hello_geek():
+    DEVOPS = os.environ.get('DEVOPS')
+    return f'<h1>Env variable DEVOPS is {DEVOPS}</h2>'
+
+if __name__ == "__main__":
+    app.run(debug=True)
