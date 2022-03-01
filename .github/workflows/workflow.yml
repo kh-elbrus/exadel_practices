@@ -1,4 +1,4 @@
-name: Job 1
+name: OS Workflow
 
 on:
   push:
