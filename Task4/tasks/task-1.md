@@ -9,7 +9,7 @@ Install docker on VM - `Ubuntu 20.04 LTS`
 - `chmod +x ubuntu-docker-install.sh`
 - `sudo ./ubuntu-docker-install.sh`
 
-**Result: **
+Result:
 
 ![Task-1](../src/img1.png)
 
