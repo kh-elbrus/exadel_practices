@@ -1,5 +1,7 @@
 FROM nginx:latest
 
+MAINTAINER elbrus.infosec@gmail.com
+
 ADD ./web-app/nginx/default.conf /etc/nginx/conf.d/default.conf
 
 RUN rm -rf /usr/share/nginx/html/*
