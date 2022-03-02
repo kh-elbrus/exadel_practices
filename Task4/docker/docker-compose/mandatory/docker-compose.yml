@@ -3,6 +3,7 @@ version: "3"
 services:
     extra-app:
         image: elbrus/exadel_practices
+        scale: 5
         ports:
             - "5000"
     tomcat:
