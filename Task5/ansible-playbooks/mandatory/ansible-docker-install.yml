@@ -1,0 +1,46 @@
+---
+- name: Install Docker into RedHat & Debian based servers
+  hosts: all
+  become: yes
+
+  tasks:
+  - block:
+
+      - name: install docker into RedHat
+        yum: name=docker state=latest
+
+      - name: start & enable the docker
+        service: name=docker state=started enabled=yes
+
+    when: ansible_os_family == "RedHat"
+
+  - block:
+
+      - name: install requirements for installing docker into Debian
+        apt:
+          pkg:
+            - ca-certificates
+            - curl
+            - gnupg
+            - lsb-release
+            - apt-transport-https
+            - python3-pip
+            - virtualenv
+            - python3-setuptools
+          state: latest
+          update_cache: true
+
+      - name: add docker gpg apt key
+        apt_key:
+          url: https://download.docker.com/linux/ubuntu/gpg
+          state: present
+
+      - name: add docker repo
+        apt_repository:
+          repo: deb https://download.docker.com/linux/ubuntu focal stable
+          state: present
+
+      - name: update & install docker
+        apt: name=docker-ce state=latest update_cache=true
+
+    when: ansible_os_family == "Debian"

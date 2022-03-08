@@ -1,0 +1,6 @@
+[aws_redhat_servers]
+redhat ansible_host=54.82.115.184
+
+[aws_ubuntu_servers]
+ubuntu ansible_host=3.92.147.45
+
