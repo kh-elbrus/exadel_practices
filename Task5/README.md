@@ -17,7 +17,7 @@
 ![master server](./src/img2.png)
 3. Ping pong - execute the built-in ansible ping command & 4. Ping the other two machines.
 ![Ping-Pong](./src/img4.png)
-5. My First Playbook: write a playbook for installing Docker on two machines and run it.
+4. My First Playbook: write a playbook for installing Docker on two machines and run it.
 ![Result](./src/img5.png)
 ![Proofs](./src/img6.png)
 
@@ -113,6 +113,39 @@ in the playbook we can add task session to automatically do POST req:
     password: "{{elastic_password}}"
     force_basic_auth: yes
 
+```
+
+### Using GALAXY 
+
+1. Download files from Ansible-galaxy  
+   
+```sh
+ansible-galaxy install lucasmaurice.elk
+```
+
+2. Move role files into ansible project directory 
+
+```sh
+mv ~/.ansible/roles/lucasmaurice.elk ./roles
+```
+
+3. Content of playbook 
+
+```sh
+less elk-playbook.yml
+
+---
+- hosts: elk-machines
+  become: true
+  roles:
+    - { role: docker, tags: ["docker"] }
+    - { role: lucasmaurice.elk, tags: ["lucasmaurice.elk"] }
+```
+
+4. Executing the playbook 
+
+```sh
+ansible-playbook elk-playbook.yml 
 ```
 
 --- 
