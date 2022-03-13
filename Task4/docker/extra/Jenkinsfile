@@ -1,0 +1,21 @@
+pipeline {
+    agent { dockerfile true }
+    stages {
+        stage('Update repo list') {
+            steps {
+                sh 'apt update -y'
+            }
+        }
+        stage('Install curl') {
+            steps {
+                sh 'apt install curl -y'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'python3 --version'
+                sh 'curl localhost:5000'
+            }
+        }
+    }
+}
