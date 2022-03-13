@@ -20,7 +20,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'python3 --version'
-                sh 'curl localhost:5000'
+                sh 'curl localhost:4000'
             }
         }
     }
