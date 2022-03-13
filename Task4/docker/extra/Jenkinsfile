@@ -12,15 +12,9 @@ pipeline {
                 sh 'apt update -y'
             }
         }
-        stage('Install curl') {
-            steps {
-                sh 'apt install curl -y'
-            }
-        }
         stage('Test') {
             steps {
                 sh 'python3 --version'
-                sh 'curl 0.0.0.0:4000'
             }
         }
     }
