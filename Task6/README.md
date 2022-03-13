@@ -87,9 +87,68 @@ Result:
 ![Jenkins state](./src/img5.png)
 
 6. Create Pipeline, which will build artifact using Dockerfile directly from your github repo (use Dockerfile from previous task).
+
+```yum
+pipeline {
+    agent { 
+        dockerfile {
+            filename './Task4/docker/extra/Dockerfile'
+            args '-u root:sudo'
+        } 
+        
+    }
+    stages {
+        stage('Update repo list') {
+            steps {
+                sh 'apt update -y'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'python3 --version'
+            }
+        }
+    }
+}
+```
+
+![Build img](./src/img6.png)
+
+
 7. Pass  variable PASSWORD=QWERTY! To the docker container. Variable must be encrypted!!!
 
- 
+```yum
+pipeline {
+    agent { 
+        dockerfile {
+            filename './Task4/docker/extra/Dockerfile'
+            args '-u root:sudo'
+        } 
+    }
+    environment {
+        PASSWORD = credentials('JENKINS-SECRET-TEXT')
+    }
+    stages {
+        stage('Update repo list') {
+            steps {
+                sh 'apt update -y'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'python3 --version'
+                sh 'echo ${PASSWORD}'
+            }
+        }
+    }
+}
+```
+
+![Jenkins ENV](./src/img7.png)
+![Jenkins ENV](./src/img8.png)
+
+👉 [Jenkins pipeline](./Jenkinsfile)
+
 ## EXTRA
 
 1. Create a pipeline, which will run a docker container from Dockerfile at the additional VM.

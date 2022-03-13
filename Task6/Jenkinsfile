@@ -4,7 +4,9 @@ pipeline {
             filename './Task4/docker/extra/Dockerfile'
             args '-u root:sudo'
         } 
-        
+    }
+    environment {
+        PASSWORD = credentials('JENKINS-SECRET-TEXT')
     }
     stages {
         stage('Update repo list') {
@@ -15,6 +17,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'python3 --version'
+                sh 'echo ${PASSWORD}'
             }
         }
     }
