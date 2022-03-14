@@ -2,7 +2,8 @@ pipeline {
     agent { 
         dockerfile {
             filename './Task4/docker/extra/Dockerfile'
-            args  '-v /tmp:/tmp -u root:sudo -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker'
+            additionalBuildArgs '--tag flask-app'
+            args  '-v /tmp:/tmp -u root:sudo -v /var/run/docker.sock:/var/run/docker.sock'
         } 
     }
     environment {
