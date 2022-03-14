@@ -1,10 +1,6 @@
 pipeline {
     agent {
-        docker { 
-            image 'ubuntu' 
-            args '-u root:sudo'
-            label 'agent-1'
-        }
+        label 'agent-1'
     }
     stages {
         stage('Install docker into container') {
