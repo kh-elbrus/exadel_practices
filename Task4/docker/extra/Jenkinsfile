@@ -1,9 +1,10 @@
 pipeline {
     agent {
         label 'agent-1'
+        args '-u elbrus:sudo'
     }
     stages {
-        stage('Install docker into container') {
+        stage('Install docker into agent') {
             steps {
                 sh '''
                     apt update -y
