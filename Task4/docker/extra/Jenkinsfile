@@ -6,8 +6,6 @@ pipeline {
         stage('Install docker into agent') {
             steps {
                 sh '''
-                    apt update -y
-                    apt install curl -y
                     curl https://get.docker.com/ > dockerinstall && chmod 777 dockerinstall && ./dockerinstall
                     docker ps -a
                 '''
