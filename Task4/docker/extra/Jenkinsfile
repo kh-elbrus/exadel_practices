@@ -1,23 +1,34 @@
 pipeline {
-    agent { 
-        dockerfile {
-            filename './Task4/docker/extra/Dockerfile'
-            additionalBuildArgs '--tag flask-app'
-            args  '-v /tmp:/tmp -u root:sudo -v $(which docker):/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock'
-        } 
-    }
-    environment {
-        PASSWORD = credentials('JENKINS-SECRET-TEXT')
+    agent {
+        label 'agent-1'
     }
     stages {
-        stage('Check running containers') {
+        // stage('Install docker into agent') {
+        //     steps {
+        //         sh '''
+        //             curl https://get.docker.com/ > dockerinstall && chmod 777 dockerinstall && ./dockerinstall
+        //             docker ps -a
+        //         '''
+        //         }
+        //     }
+        stage('Build docker image') {
             steps {
-                sh 'docker run -p 5000:5000 -d flask-app:latest'
+                 sh 'docker build -t flask-app -f ./Task4/docker/extra/Dockerfile .'
             }
         }
-        stage('Docker ps') {
+        stage('Run docker image') {
             steps {
-                 sh 'docker ps -a'
+                sh 'docker run -p 5000:5000 -d flask-app'
+            }
+        }
+        stage('Getting docker ps') {
+            steps {
+                sh 'docker ps -a'
+            }
+        }
+        stage('Check working web service') {
+            steps {
+                sh 'curl http://0.0.0.0:5000'
             }
         }
     }
