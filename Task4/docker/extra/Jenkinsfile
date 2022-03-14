@@ -11,12 +11,12 @@ pipeline {
     stages {
         stage('Build docker image') {
             steps {
-                sh 'docker build -f ./Task4/docker/extra/Dockerfile -t web-service-flask'
+                sh 'sudo docker build -f ./Task4/docker/extra/Dockerfile -t flask-app'
             }
         }
         stage('Chech running containers') {
             steps {
-                sh 'docker ps -a'
+                sh 'sudo docker run -p 5000:5000 --name flask-app -d flask-app'
             }
         }
     }
