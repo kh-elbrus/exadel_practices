@@ -1,21 +1,25 @@
 pipeline {
     agent { 
-        dockerfile {
-            filename './Task4/docker/extra/Dockerfile'
-            additionalBuildArgs  '--tag web-service-flask & docker run -it -dp 5000:5000'
-            args '-u root:sudo'
+        docker{
+            image:ubuntu
+            args  '-v /tmp:/tmp -u root:sudo'
         } 
     }
     environment {
         PASSWORD = credentials('JENKINS-SECRET-TEXT')
     }
     stages {
-        // stage('Run container') {
-        //     steps {
-        //         sh 'docker run -u 0 --privileged -d -p 5000:5000 --tag web-service-flask -v /var/run/docker.sock:/var/run/docker.sock'
-        //     }
-        // }
-        stage('Check running containers') {
+        stage('Build docker image') {
+            steps {
+                sh 'docker build -f ./Task4/docker/extra/Dockerfile -t web-service-flask'
+            }
+        }
+        stage('Run docker image') {
+            steps {
+                sh 'docker run -it -dp 5000:5000 -t web-service-flask'
+            }
+        }
+        stage('Chech running containers') {
             steps {
                 sh 'docker ps -a'
             }
