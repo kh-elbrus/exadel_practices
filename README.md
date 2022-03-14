@@ -25,6 +25,6 @@
 |   3   |   [Terraform with AWS](./Task3/README.md)    |    `Done`    | `Pass with extra` |
 |   4   | [Docker & Docker compose](./Task4/README.md) |    `Done`    | `Pass with extra` |
 |   5   |         [Ansible](./Task5/README.md)         |    `Done`    | `Pass with extra` |
-|   6   |         [Jenkins](./Task6/README.md)         | `In process` |  `Goes to pass`   |
+|   6   |         [Jenkins](./Task6/README.md)         | `In process` |  `Goes to extra`  |
 |   7   |                                              |              |                   |
 |   8   |                                              |              |                   |
