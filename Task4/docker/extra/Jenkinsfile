@@ -10,9 +10,14 @@ pipeline {
         PASSWORD = credentials('JENKINS-SECRET-TEXT')
     }
     stages {
-        stage('Curl to flask') {
+        stage('Run docker container') {
             steps {
-                sh 'curl localhost:5000'
+                sh 'docker run -p 5000:5000 -d flask-app:latest'
+            }
+        }
+        stage('Check docker ps') {
+            steps {
+                 sh 'docker ps -a'
             }
         }
     }
