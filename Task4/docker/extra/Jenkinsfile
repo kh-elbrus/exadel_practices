@@ -1,6 +1,6 @@
 pipeline {
     agent { 
-        docker{
+        docker {
             image:ubuntu
             args  '-v /tmp:/tmp -u root:sudo'
         } 
