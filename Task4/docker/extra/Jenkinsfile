@@ -3,21 +3,18 @@ pipeline {
         dockerfile {
             filename './Task4/docker/extra/Dockerfile'
             args '-u root:sudo'
+            label ''
         } 
     }
     environment {
         PASSWORD = credentials('JENKINS-SECRET-TEXT')
     }
     stages {
-        stage('Update repo list') {
+        stage('Test hyp') {
             steps {
-                sh 'apt update -y'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'python3 --version'
-                sh 'echo ${PASSWORD}'
+                sh 'mkdir this_dir_in_jmaster_server'
+                sh 'hostname'
+                sh 'pwd'
             }
         }
     }
