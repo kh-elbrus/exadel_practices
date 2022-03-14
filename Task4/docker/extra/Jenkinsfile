@@ -14,11 +14,6 @@ pipeline {
                 sh 'docker build -f ./Task4/docker/extra/Dockerfile -t web-service-flask'
             }
         }
-        stage('Run docker image') {
-            steps {
-                sh 'docker run -t -d -p 5000:5000 -t web-service-flask -v /tmp:/tmp -u root:sudo -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docke'
-            }
-        }
         stage('Chech running containers') {
             steps {
                 sh 'docker ps -a'
