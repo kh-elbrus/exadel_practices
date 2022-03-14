@@ -13,7 +13,7 @@ pipeline {
         //     }
         stage('Build docker image') {
             steps {
-                 sh 'docker build -f ./Task4/docker/extra/Dockerfile flask-app'
+                 sh 'docker build -f ./Task4/docker/extra/Dockerfile'
             }
         }
         stage('Run docker image') {
