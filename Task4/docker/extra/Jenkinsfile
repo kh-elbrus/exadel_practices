@@ -3,18 +3,21 @@ pipeline {
         dockerfile {
             filename './Task4/docker/extra/Dockerfile'
             args '-u root:sudo'
-            label ''
+            label 'web-service'
         } 
     }
     environment {
         PASSWORD = credentials('JENKINS-SECRET-TEXT')
     }
     stages {
-        stage('Test hyp') {
+        stage('Run container') {
             steps {
-                sh 'mkdir this_dir_in_jmaster_server'
-                sh 'hostname'
-                sh 'pwd'
+                sh 'docker run -d -p 0.0.0.0:5000:5000 web-service'
+            }
+        }
+        stage('Check running containers') {
+            steps {
+                sh 'docker ps -a'
             }
         }
     }
