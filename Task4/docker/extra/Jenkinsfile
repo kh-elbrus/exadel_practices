@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Run container') {
             steps {
-                sh 'docker run -d -p 5000:5000 --tag web-service-flask'
+                sh 'docker run --privileged -it -d -p 5000:5000 --tag web-service-flask'
             }
         }
         stage('Check running containers') {
