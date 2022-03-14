@@ -86,7 +86,7 @@ Result:
 ![Jenkins console](./src/img4.png)
 ![Jenkins state](./src/img5.png)
 
-1. Create Pipeline, which will build artifact using Dockerfile directly from your github repo (use Dockerfile from previous task).
+6. Create Pipeline, which will build artifact using Dockerfile directly from your github repo (use Dockerfile from previous task).
 
 ```
 pipeline {
@@ -115,7 +115,7 @@ pipeline {
 ![Build img](./src/img6.png)
 
 
-1. Pass  variable PASSWORD=QWERTY! To the docker container. Variable must be encrypted!!!
+7. Pass  variable PASSWORD=QWERTY! To the docker container. Variable must be encrypted!!!
 
 ```
 pipeline {
@@ -153,28 +153,15 @@ pipeline {
 
 1. Create a pipeline, which will run a docker container from Dockerfile at the additional VM.
 
-```yum
-pipeline {
-    agent { 
-        dockerfile {
-            filename './Task4/docker/extra/Dockerfile'
-            args '-u root:sudo'
-        } 
-    }
-    environment {
-        PASSWORD = credentials('JENKINS-SECRET-TEXT')
-    }
-    stages {
-        stage('Run the docker container') {
-            steps {
-                sh 'docker run -dp 3000:3000 getting-started'
-            }
-        }
-    }
-}
-```
+👉 [Checkout Jenkinsfile](../Task4/docker/extra/Jenkinsfile)
 
 2. Create an ansible playbook, which will deploy Jenkins.
+
+
+
 3. Deploy a local docker registry, upload a docker image there, download img from your local docker registry and run the container.
+
+
+
 4. Configure integration between Jenkins and your Git repo. Jenkins project must be started automatically if you push or merge to master, you also must see Jenkins last build status(success/unsuccess) in your Git repo.
 
