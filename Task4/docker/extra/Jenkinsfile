@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Run container') {
             steps {
-                sh 'docker run -d -p 0.0.0.0:5000:5000 web-service'
+                sh 'docker run -d -p 0.0.0.0:5000:5000 -t web-service'
             }
         }
         stage('Check running containers') {
