@@ -3,14 +3,14 @@ pipeline {
         label 'agent-1'
     }
     stages {
-        stage('Install docker into agent') {
-            steps {
-                sh '''
-                    curl https://get.docker.com/ > dockerinstall && chmod 777 dockerinstall && ./dockerinstall
-                    docker ps -a
-                '''
-                }
-            }
+        // stage('Install docker into agent') {
+        //     steps {
+        //         sh '''
+        //             curl https://get.docker.com/ > dockerinstall && chmod 777 dockerinstall && ./dockerinstall
+        //             docker ps -a
+        //         '''
+        //         }
+        //     }
         stage('Build docker image') {
             steps {
                  sh 'docker build -f ./Task4/docker/extra/Dockerfile --tag flask-app'
