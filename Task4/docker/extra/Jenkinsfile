@@ -2,8 +2,7 @@ pipeline {
     agent { 
         dockerfile {
             filename './Task4/docker/extra/Dockerfile'
-            args '-u root:sudo'
-            label 'web-service'
+            args '-u root:sudo -t web-service'
         } 
     }
     environment {
