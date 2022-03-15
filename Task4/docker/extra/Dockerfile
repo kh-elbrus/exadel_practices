@@ -17,3 +17,4 @@ RUN pip install -r requirements.txt
 COPY ./Task4/docker/extra/app.py /app/app.py
 
 CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+
