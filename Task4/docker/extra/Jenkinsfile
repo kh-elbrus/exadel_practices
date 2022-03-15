@@ -1,23 +1,34 @@
 pipeline {
-    agent { 
-        dockerfile {
-            filename './Task4/docker/extra/Dockerfile'
-            args '-u root:sudo'
-        } 
-    }
-    environment {
-        PASSWORD = credentials('JENKINS-SECRET-TEXT')
+    agent {
+        label 'agent-1'
     }
     stages {
-        stage('Update repo list') {
+        // stage('Install docker into agent') {
+        //     steps {
+        //         sh '''
+        //             curl https://get.docker.com/ > dockerinstall && chmod 777 dockerinstall && ./dockerinstall
+        //             docker ps -a
+        //         '''
+        //         }
+        //     }
+        stage('Build docker image') {
             steps {
-                sh 'apt update -y'
+                 sh 'docker build -t flask-app -f ./Task4/docker/extra/Dockerfile .'
             }
         }
-        stage('Test') {
+        stage('Run docker image') {
             steps {
-                sh 'python3 --version'
-                sh 'echo ${PASSWORD}'
+                sh 'docker run -p 5000:5000 -d flask-app'
+            }
+        }
+        stage('Getting docker ps') {
+            steps {
+                sh 'docker ps -a'
+            }
+        }
+        stage('Check working web service') {
+            steps {
+                sh 'curl http://0.0.0.0:5000'
             }
         }
     }

@@ -1,0 +1,12 @@
+[Unit]
+Description=Jenkins in a Docker container
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker run -p 8080:8080 -p 50000:50000 -d -v /var/run/docker.sock:/var/run/docker.sock -v /share/jenkins:/var/jenkins_home jenkins/jenkins:lts
+ExecStop=/usr/bin/docker stop -t 2 jenkins/jenkins:lts
+
+[Install]
+WantedBy=default.target
