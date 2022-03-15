@@ -157,11 +157,42 @@ pipeline {
 
 2. Create an ansible playbook, which will deploy Jenkins.
 
+![Result](./src/img9.png)
+![Result](./src/img10.png)
 
+👉 [Ansible playbook](./ansible-playbook/jenkins-playbook.yml)
 
 3. Deploy a local docker registry, upload a docker image there, download img from your local docker registry and run the container.
 
+```sh
+# Run a local registry
+docker run -d -p 5000:5000 --restart=always --name registry registry:2
 
+# Working dir 
+tree
+.
+├── app.py
+├── Dockerfile
+└── requirements.txt
+
+# Build image with dockerfile
+docker build --tag localhost:5000/flask-web .
+
+# Push image to local docker registry 
+docker push localhost:5000/flask-web
+```
+
+![Result](./src/img11.png)
+
+```sh
+# Download image from local registry
+docker pull localhost:5000/flask-web
+
+# Run container 
+sudo docker run -p 3001:5000 -d flask-web
+```
+
+![Result](./src/img12.png)
 
 4. Configure integration between Jenkins and your Git repo. Jenkins project must be started automatically if you push or merge to master, you also must see Jenkins last build status(success/unsuccess) in your Git repo.
 
