@@ -196,3 +196,52 @@ sudo docker run -p 3001:5000 -d flask-web
 
 4. Configure integration between Jenkins and your Git repo. Jenkins project must be started automatically if you push or merge to master, you also must see Jenkins last build status(success/unsuccess) in your Git repo.
 
+`
+NOTE: The budget does not work cause Jenkins installed locally!
+Example of badge: 
+[![Jenkins build status](https://<JENKINS-URL>/job/Integration%20Jenkins%20with%20Github/badge/icon)](https://c4cc-217-29-29-53.ngrok.io/job/Integration%20Jenkins%20with%20Github/)
+`
+
+## Integration with GitHub
+
+1. Installing `ngrok`
+
+```sh
+wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.tgz
+
+tar xvf ngrok-stable-linux-amd64.tgz
+
+mv ngrok /usr/local/bin
+
+ngrok authtoken <Token>
+```
+
+2. Setup new Freestyle project
+
+- Source Code Management
+  - Git
+    - url: `https://github.com/kh-elbrus/exadel_practices.git`
+    - branch: `jenkins`
+- Build Triggers
+  - `GitHub hook trigger for GITScm polling`
+- Build
+  - Execute script
+    - `echo test build`
+    - `ls -la`
+- Save
+
+3. Setup GitHub WebHooks
+
+```sh
+# run ngrok and forward to the 8080 port 
+ngrok http 0.0.0.0:8080
+```
+
+![Setup url](./src/img16.png)
+
+4. Triggering event
+
+![Trigger](./src/img13.png)
+![Trigger](./src/img14.png)
+![Trigger](./src/img15.png)
+
