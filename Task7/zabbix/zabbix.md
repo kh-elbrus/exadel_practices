@@ -84,9 +84,45 @@ $ sudo systemctl enable zabbix-agent
 ![Healths check](./src/img7.png)
 ![Exadel](./src/img6.png)
 
+#### Active & Passive checks 
 
+Setup configuration file of agent to enable active & passive mode
+
+```sh
+# For Active the port is 10051 !!!
+ServerActive=192.168.150.135
+# For Passive the port is 10050 !!!
+Server=192.168.150.135
+HostnameItem=system.hostname
+HostMetadata=release
+```
+
+#### Agentless ICMP pings 
+
+Install `fping` then configuring `zabbix_server.conf`
+
+```
+FpingLocation=/usr/bin/fping
+Fping6Location=/usr/bin/fping6
+```
+
+Go to Web panel --> Configuration --> Hosts, add new host with ICMP Ping template
+
+![WIN](./src/img8.png)
+![WIN](./src/img9.png)
 
 ![Web panel](./src/img5.png)
 
-### EXTRA 
-1.2.2: Complete 1.2.1 using ansible
+#### Alert
+
+```
+NOTE: 
+I was unable to trigger the alert and could not determine the reason. 
+Probably I think it's cause low performance due to limitations in the local virtual lab. 
+```
+
+#### Building internal network map 
+
+My internal virtual lab was like this:
+
+![Map](./src/img10.png)

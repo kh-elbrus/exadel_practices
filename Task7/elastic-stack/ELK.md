@@ -6,6 +6,14 @@
 
 ---
 
+:: technologies:
+  - `elasticsearch`
+  - `kibana`
+  - `logstash`
+  - `opendistro`
+  - `wazuh`
+  - `filebeat`
+
 ## ELK
 
 1. Install and configure ELK
@@ -309,7 +317,105 @@ $ systemctl start wazuh-manager
 ![Wazuh manager](./src/img10.png)
 ![Wazuh manager](./src/img11.png)
 
+#### Receiving data from containers
 
-### EXTRA 
+Setup logstash for receiving data, adding conf file `docker-01.conf`
 
-2.4: Set up filters on the Logstash side (get separate docker_container and docker_image fields from the message field)
+```yml
+input {
+ syslog {
+      host => 192.168.150.130
+      port => 5000
+      type => "docker"
+      }
+}
+
+filter {
+      grok {
+            match => { "message" => "%{SYSLOG5424PRI}%{NONNEGINT:ver} +(?:%{TIMESTAMP_ISO8601:ts}|-) +(?:%{HOSTNAME:service}|-) +(?:%{NOTSPACE:containerName}|-) +(?:%{NOTSPACE:proc}|-) +(?:%{WORD:msgid}|-) +(?:%{SYSLOG5424SD:sd}|-|) +%{GREEDYDATA:msg}" }
+      }
+      syslog_pri { }
+      date {
+            match => [ "syslog_timestamp", "MMM  d HH:mm:ss", "MMM dd HH:mm:ss" ]
+      }
+      mutate {
+            remove_field => [ "message", "priority", "ts", "severity", "facility", "facility_label", "severity_label", "syslog5424_pri", "proc", "syslog_severity_code", "syslog_facility_code", "syslog_facility", "syslog_severity", "syslog_hostname", "syslog_message", "syslog_timestamp", "ver" ]
+      }
+      mutate {
+            remove_tag => [ "_grokparsefailure_sysloginput" ]
+      }
+      mutate {
+            gsub => [
+                  "service", "[0123456789-]", ""
+            ]
+      }
+      if [msg] =~ "^ *{" {
+            json {
+                  source => "msg"
+            }
+            if "_jsonparsefailure" in [tags] {
+                  drop {}
+            }
+            mutate {
+                  remove_field => [ "msg" ]
+            }
+      }
+}
+
+output {
+ elasticsearch {
+      hosts => "elasticsearch:9200"
+      user => admin
+      password => <YOUR-PASSWORD>
+      ssl_certificate_verification => false
+      }
+}
+```
+
+Go to the new VM and run command:
+
+```sh
+docker run --log-driver=syslog --log-opt syslog-address=tcp://:5000 --log-opt syslog-facility=daemon -p 4080:4080 -d -v /var/run/docker.sock:/var/run/docker.sock -v apache-web-server
+```
+
+```sh
+input { 
+  file { 
+    path => "/home/elbrus/apache-daily-access.log" 
+    start_position => "beginning" 
+    sincedb_path => "/dev/null" 
+    } 
+  } 
+filter { 
+  grok { 
+    match => { 
+      "message" => "%{COMBINEDAPACHELOG}" 
+    } 
+  } 
+  date { 
+    match => [ "timestamp" , "dd/MMM/yyyy:HH:mm:ss Z" ] 
+  } 
+  geoip { 
+    source => "clientip" 
+  } 
+} 
+output { 
+  elasticsearch { 
+    hosts => ["https://localhost:9200"] 
+    user => admin
+    password => <YOUR-PASSWORD>
+    ssl_certificate_verification => false
+    } 
+}
+```
+
+#### Getting Data from sources
+
+![Sample](./src/img12.png)
+![Sample](./src/img13.png)
+
+#### Dashboard 
+
+![Sample](./src/img14.png)
+![Sample](./src/img15.png)
+
