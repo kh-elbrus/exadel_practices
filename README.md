@@ -27,4 +27,4 @@
 |   5   |                               [Ansible](./Task5/README.md)                               |    `Done`    | `Pass with extra` |
 |   6   |                               [Jenkins](./Task6/README.md)                               |    `Done`    | `Pass with extra` |
 |   7   |                        [Logging & Monitoring](./Task7/README.md)                         |    `Done`    |      `Pass`       |
-|   8   | [Building CI/CD process from scratch](https://github.com/kh-elbrus/exadel-final-project) | `In process` |  `Goes to pass`   |
+|   8   | [Building CI/CD process from scratch](https://github.com/kh-elbrus/exadel-final-project) | `Done` |  `Pass`   |
